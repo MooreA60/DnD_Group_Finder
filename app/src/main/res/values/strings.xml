@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">DnD Group Finder</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="username">Username</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="password">Password</string>
+    <string name="title_activity_posts">PostsActivity</string>
+    <string name="title_activity_user_profile">UserProfileActivity</string>
+    <string name="logout">Logout</string>
+    <string name="profilepage">ProfilePage</string>
+    <string name="textview">TextView</string>
+    <string name="fab_button">fab button</string>
+    <string name="fb">fb</string>
+    <string name="floating_action">floating action</string>
+    <string name="title_activity_create_post">CreatePostActivity</string>
+    <string name="textviewdesc">TextView</string>
+    <string name="buttonsubmit">Button</string>
+    <string name="description">Description</string>
+    <string name="select_image">Select Image</string>
+
+
+    <!--    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+    <!--        &lt;!&ndash; This would set the toolbar's background color &ndash;&gt;-->
+    <!--        <item name="android:background">@color/colorPrimary</item>-->
+    <!--        &lt;!&ndash; android:textColorPrimary is the color of the title text in the Toolbar  &ndash;&gt;-->
+    <!--        <item name="android:textColorPrimary">@android:color/holo_blue_light</item>-->
+    <!--        &lt;!&ndash; android:actionMenuTextColor is the color of the text of action (menu) items  &ndash;&gt;-->
+    <!--        <item name="actionMenuTextColor">@android:color/holo_green_light</item>-->
+    <!--        &lt;!&ndash; Enable these below if you want clicking icons to trigger a ripple effect &ndash;&gt;-->
+    <!--        &lt;!&ndash;-->
+    <!--        <item name="selectableItemBackground">?android:selectableItemBackground</item>-->
+    <!--        <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>-->
+    <!--        &ndash;&gt;-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash; This configures the styles for the title within the Toolbar  &ndash;&gt;-->
+    <!--    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">-->
+    <!--        <item name="android:textSize">21sp</item>-->
+    <!--        <item name="android:textStyle">italic</item>-->
+    <!--    </style>-->
+</resources>

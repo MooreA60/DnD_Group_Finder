@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659032294777",
+    "project_id": "dnd-group-finder-7f1fe",
+    "storage_bucket": "dnd-group-finder-7f1fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659032294777:android:4919a22b0131fa695c1ba8",
+        "android_client_info": {
+          "package_name": "com.example.dndgroupfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659032294777-u2o34nml9su37mhj6ulm1tkc9rlido92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAReD8xfzFAEXiBHWaVtItcsXwmsPsdyA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659032294777-u2o34nml9su37mhj6ulm1tkc9rlido92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
