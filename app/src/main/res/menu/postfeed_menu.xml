@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".PostFeedActivity">
 
     <item
         android:id="@+id/menuToProfile"
         android:icon="@drawable/accounticonblack"
-        android:showAsAction="always"
-        android:title="@string/profilepage" />
+        android:title="@string/profilepage"
+        app:showAsAction="always" />
 </menu>

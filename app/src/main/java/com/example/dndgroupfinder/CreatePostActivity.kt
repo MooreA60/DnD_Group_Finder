@@ -12,24 +12,35 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.dndgroupfinder.models.Post
 import com.example.dndgroupfinder.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlin.math.sign
 
 private const val TAG = "createpost_activity"
+var photoUri : Uri? = null
+
 private const val PICK_PHOTO_CODE = 1234
 class CreatePostActivity : ComponentActivity() {
 
     private var signedInUser : User? = null
-    private var it: Uri? = null
-    private lateinit var firestoreDatabase: FirebaseFirestore
+    //private var it : Uri? = null
 
+
+    private lateinit var firestoreDatabase: FirebaseFirestore
+    // Storage reference from our app to Firebase Storage
+    private lateinit var storageRef: StorageReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.createpost_activity)
+        val uploadImageView= findViewById<ImageView>(R.id.uploadImageView)
+        val btnSubmitPost= findViewById<Button>(R.id.btnSubmitPost)
+        storageRef = FirebaseStorage.getInstance().reference
 
         firestoreDatabase = FirebaseFirestore.getInstance()
 
@@ -45,20 +56,12 @@ class CreatePostActivity : ComponentActivity() {
                 Log.i(TAG, "Failure fetching signed in user", exception)
             }
 
-
-
         val btnSlctImg= findViewById<Button>(R.id.btnSlctImg)
-        val uploadImageView= findViewById<ImageView>(R.id.uploadImageView)
-        val btnSubmitPost= findViewById<Button>(R.id.btnSubmitPost)
-
-
-
-
-
 
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent(),
             ActivityResultCallback {
+
                 uploadImageView.setImageURI(it)
 
             }
@@ -83,13 +86,16 @@ class CreatePostActivity : ComponentActivity() {
 
     //Error checking before uploading a post
     private fun handleSubmitPostClick() {
+        val uploadImageView= findViewById<ImageView>(R.id.uploadImageView)
+        val btnSubmitPost= findViewById<Button>(R.id.btnSubmitPost)
+        val postDescription= findViewById<EditText>(R.id.postDescription)
+
         //Is there a photo?
-        if (it == null){
+        if (photoUri == null){
             Toast.makeText(this, "No photo has been selected", Toast.LENGTH_SHORT).show()
             return
         }
         //Is there a description?
-        val postDescription= findViewById<EditText>(R.id.postDescription)
         if (postDescription.text.isBlank()){
             Toast.makeText(this, "No description has been selected", Toast.LENGTH_SHORT).show()
             return
@@ -101,10 +107,44 @@ class CreatePostActivity : ComponentActivity() {
             return
         }
 
+
+        btnSubmitPost.isEnabled = false
+
         //The following actions must take place in order to successfully complete
-        //Upload image selected to Firebase Storage
-        //Retrieve image url of said image
-        //Create the post with the image url and add it to the collection "post"
+        //1. Upload image selected to Firebase Storage
+        val photoUploadUri = photoUri as Uri
+        val photoRef = storageRef.child("images/${System.currentTimeMillis()}-photo.jpg") //This is where the photos live
+        photoRef.putFile(photoUploadUri)
+            .continueWithTask{photoUploadTask ->
+
+                Log.i(TAG, "Number of bytes uploaded: ${photoUploadTask.result?.bytesTransferred}")
+                //2. Retrieve image url of said image
+                photoRef.downloadUrl
+        }.continueWithTask{ downloadUrlTask ->
+            //3. Create the post with the image url and add it to the collection "post"
+                val post = Post(
+                    postDescription.text.toString(),
+                    downloadUrlTask.result.toString(),
+                    System.currentTimeMillis(),
+                    signedInUser)
+                firestoreDatabase.collection("posts").add(post)
+        }.addOnCompleteListener{ postCreateTask ->
+            btnSubmitPost.isEnabled = true
+            if (!postCreateTask.isSuccessful) {
+                Log.e(TAG, "Exception during firebase operations", postCreateTask.exception)
+                Toast.makeText(this,"Failed to save post", Toast.LENGTH_SHORT).show()
+            }
+            postDescription.text.clear()
+                uploadImageView.setImageResource(0)
+                Toast.makeText(this,"Post has been successfully uploaded!",Toast.LENGTH_SHORT).show()
+                val profileIntent = Intent(this, UserProfileActivity::class.java)
+                profileIntent.putExtra(EXTRA_USERNAME, signedInUser?.username)
+                startActivity(profileIntent)
+                finish()
+
+        }
+
+
     }
 
 }

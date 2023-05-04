@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 //import android.widget.Button
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dndgroupfinder.models.Post
@@ -17,8 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
 private const val TAG = "PostFeedActivity"
-private const val EXTRA_USERNAME = "EXTRA_USERNAME"
-open class PostFeedActivity : ComponentActivity() {
+const val EXTRA_USERNAME = "EXTRA_USERNAME"
+open class PostFeedActivity : AppCompatActivity() {
 
     private var signedInUser : User? = null
     private lateinit var firestoreDatabase: FirebaseFirestore
@@ -88,8 +90,11 @@ open class PostFeedActivity : ComponentActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.postfeed_menu, menu)
-        return super.onCreateOptionsMenu(menu)
+        //menuInflater.inflate(R.menu.postfeed_menu, menu)
+        //return super.onCreateOptionsMenu(menu)
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.postfeed_menu, menu)
+        return true
 
     }
 
