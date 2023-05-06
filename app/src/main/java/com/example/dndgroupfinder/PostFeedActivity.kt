@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-//import android.widget.Button
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +28,7 @@ open class PostFeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.postfeed_activity)
+        supportActionBar?.title = "DnD Group Finder"
 
         //Layout file for one post -Done
         //create data source -Done
@@ -64,7 +63,7 @@ open class PostFeedActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
         if(username != null){
-            //supportActionBar?.title = username-------------------------------------------------------------
+            supportActionBar?.title = username
             postFeedReference = postFeedReference.whereEqualTo("user.username", username)
         }
 

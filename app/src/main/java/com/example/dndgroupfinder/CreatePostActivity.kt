@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultCallback
@@ -28,7 +29,6 @@ class CreatePostActivity : ComponentActivity() {
 
     private var signedInUser : User? = null
     //private var it : Uri? = null
-
 
     private lateinit var firestoreDatabase: FirebaseFirestore
     // Storage reference from our app to Firebase Storage
@@ -66,7 +66,6 @@ class CreatePostActivity : ComponentActivity() {
 
             }
         )
-        
 
         btnSlctImg.setOnClickListener {
             Log.i(TAG, "Open up image picker in user device")
@@ -89,15 +88,28 @@ class CreatePostActivity : ComponentActivity() {
         val uploadImageView= findViewById<ImageView>(R.id.uploadImageView)
         val btnSubmitPost= findViewById<Button>(R.id.btnSubmitPost)
         val postDescription= findViewById<EditText>(R.id.postDescription)
+        val textViewTitle = findViewById<TextView>(R.id.textViewTitle)
+        val textViewContact = findViewById<TextView>(R.id.textViewContact)
 
         //Is there a photo?
         if (photoUri == null){
             Toast.makeText(this, "No photo has been selected", Toast.LENGTH_SHORT).show()
             return
         }
+        //Is there a title?
+        if (textViewTitle.text.isBlank()){
+            Toast.makeText(this, "No Title has been selected", Toast.LENGTH_SHORT).show()
+            return
+        }
         //Is there a description?
         if (postDescription.text.isBlank()){
             Toast.makeText(this, "No description has been selected", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        //Is there a contact?
+        if (textViewContact.text.isBlank()){
+            Toast.makeText(this, "No contact has been selected", Toast.LENGTH_SHORT).show()
             return
         }
         //Is a user signed in? Realistically they shouldn't be able to get this far without

@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "signin_activity"
 class SignInActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signin_activity)
@@ -37,6 +38,7 @@ class SignInActivity : ComponentActivity() {
         val signInBtn = findViewById<Button>(R.id.signInBtn)
         val enterEmail = findViewById<EditText>(R.id.enterEmail)
         val enterPassword =findViewById<EditText>(R.id.enterPassword)
+
         signInBtn.setOnClickListener{
             signInBtn.isEnabled = false
             val email = enterEmail.text.toString()
@@ -59,8 +61,22 @@ class SignInActivity : ComponentActivity() {
             }
 
         }
+        val goToRegisterButton = findViewById<Button>(R.id.goToRegisterButton)
+        goToRegisterButton.setOnClickListener{
+
+            //goRegisterActivity()
+            val regIntent = Intent(this@SignInActivity, RegisterActivity::class.java)
+            startActivity(regIntent)
+
+        }
 
     }
+
+//    private fun goRegisterActivity() {
+//        Log.i(TAG, "goRegisterActivity")
+//        val regIntent = Intent(this@SignInActivity, RegisterActivity::class.java)
+//        startActivity(regIntent)
+//    }
 
     private fun goPostFeedActivity() {
         Log.i(TAG, "goPostFeedActivity")
@@ -68,6 +84,8 @@ class SignInActivity : ComponentActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }
 
 

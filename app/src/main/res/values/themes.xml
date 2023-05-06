@@ -6,8 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-<!--        <item name="actionBarSize">500dp</item>-->
-<!--        <item name="actionBar"-->
+        <!--        <item name="actionBarSize">500dp</item>-->
+        <!--        <item name="actionBar"-->
         <item name="android:statusBarColor">@color/teal_200</item>
 
     </style>

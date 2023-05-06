@@ -1,11 +1,9 @@
 package com.example.dndgroupfinder
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.ComponentActivity
 import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "UserProfileActivity"

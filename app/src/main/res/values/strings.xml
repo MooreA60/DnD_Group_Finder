@@ -22,6 +22,7 @@
     <string name="buttonsubmit">Button</string>
     <string name="description">Description</string>
     <string name="select_image">Select Image</string>
+    <string name="register">Register</string>
 
 
     <!--    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->

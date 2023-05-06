@@ -24,11 +24,29 @@
         android:contentDescription="uploaded image shows here" />
 
     <EditText
+        android:id="@+id/postTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Enter a title"
+        android:minHeight="48dp"
+        />
+
+    <EditText
         android:id="@+id/postDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="@string/description"
+        android:hint="Enter a description"
+        android:minHeight="48dp"
+        />
+
+    <EditText
+        android:id="@+id/postContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Enter contact information"
         android:minHeight="48dp"
         />
 
